@@ -1,0 +1,443 @@
+# Copyright (C) 2026 Papy 3D Factory
+# This file is distributed under the same license as the Chuck365 Fact Viewer plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Chuck365 Fact Viewer 2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/chuck365-fact-"
+"viewer\n"
+"POT-Creation-Date: 2026-04-26T15:29:35+02:00\n"
+"PO-Revision-Date: 2026-04-26 13:00+0200\n"
+"Last-Translator: Papy 3D Factory <contact@papy-3d-factory.xyz>\n"
+"Language-Team: English <en@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: chuck365-fact-viewer\n"
+
+#. Plugin Name of the plugin
+#: chuck365-fact-viewer.php
+msgid "Chuck365 Fact Viewer"
+msgstr "Chuck365 Fact Viewer"
+
+#. Plugin URI of the plugin
+#: chuck365-fact-viewer.php
+msgid "https://chuck365.fr"
+msgstr "https://chuck365.fr"
+
+#. Description of the plugin
+#: chuck365-fact-viewer.php
+msgid ""
+"Un plugin pour afficher chaque jour une anecdote unique et différente sur "
+"Chuck Norris."
+msgstr ""
+"A plugin to display a unique and different Chuck Norris fact every day."
+
+#. Author of the plugin
+#: chuck365-fact-viewer.php
+msgid "Papy 3D Factory"
+msgstr "Papy 3D Factory"
+
+#: chuck365-fact-viewer.php:82
+msgid "<b>Configuration de Chuck365</b>"
+msgstr "<b>Chuck365 Settings</b>"
+
+#: chuck365-fact-viewer.php:86
+msgid "Réglages & Aperçu"
+msgstr "Settings & Preview"
+
+#: chuck365-fact-viewer.php:87
+msgid "Utilisation"
+msgstr "How to Use"
+
+#: chuck365-fact-viewer.php:88
+msgid "Soutenir Chuck365"
+msgstr "Support Chuck365"
+
+#: chuck365-fact-viewer.php:89
+msgid "À propos"
+msgstr "About"
+
+#: chuck365-fact-viewer.php:100
+msgid "Bordure / Titre"
+msgstr "Border / Title"
+
+#: chuck365-fact-viewer.php:104
+msgid "Fond"
+msgstr "Background"
+
+#: chuck365-fact-viewer.php:108
+msgid "Texte"
+msgstr "Text"
+
+#: chuck365-fact-viewer.php:112 block/edit.js:30
+msgid "Titre"
+msgstr "Title"
+
+#: chuck365-fact-viewer.php:116
+msgid "Afficher le Copyright"
+msgstr "Display the Copyright"
+
+#: chuck365-fact-viewer.php:119
+msgid "Afficher la barre de copyright et le lien Chuck365"
+msgstr "Display the copyright bar and the Chuck365 link"
+
+#: chuck365-fact-viewer.php:125
+msgid "Presets de style :"
+msgstr "Style Presets:"
+
+#: chuck365-fact-viewer.php:142
+msgid "Aperçu"
+msgstr "Preview"
+
+#: chuck365-fact-viewer.php:148
+msgid "Comment afficher les Chuck Norris Facts ?"
+msgstr "How to display Chuck Norris Facts?"
+
+#: chuck365-fact-viewer.php:149
+msgid ""
+"Vous avez deux méthodes simples pour intégrer la puissance de Chuck sur "
+"votre site."
+msgstr ""
+"You have two simple methods to integrate the power of Chuck on your site."
+
+#: chuck365-fact-viewer.php:152
+msgid "Via l'éditeur Gutenberg (Recommandé)"
+msgstr "Via the Gutenberg Editor (Recommended)"
+
+#: chuck365-fact-viewer.php:153
+msgid ""
+"Recherchez simplement le bloc nommé <strong>\"Chuck365 Fact\"</strong> dans "
+"l'éditeur de vos pages ou articles. Vous pourrez voir l'aperçu en direct."
+msgstr ""
+"Simply search for the block named <strong>\"Chuck365 Fact\"</strong> in your "
+"page or post editor. You will be able to see the live preview."
+
+#: chuck365-fact-viewer.php:157
+msgid "Via le Shortcode"
+msgstr "Via Shortcode"
+
+#: chuck365-fact-viewer.php:158
+msgid ""
+"Copiez et collez le code suivant là où vous souhaitez afficher le fait "
+"(Widget texte, constructeur de page, etc.) :"
+msgstr ""
+"Copy and paste the following code wherever you want to display the fact "
+"(Text widget, page builder, etc.):"
+
+#: chuck365-fact-viewer.php:164
+msgid "Conseils d'optimisation"
+msgstr "Optimization Tips"
+
+#: chuck365-fact-viewer.php:166
+msgid "Mise en cache :"
+msgstr "Caching:"
+
+#: chuck365-fact-viewer.php:166
+msgid ""
+"Le plugin utilise un système de \"Transients\". Le fait est récupéré une "
+"seule fois par jour et stocké localement pour garantir une vitesse de "
+"chargement optimale."
+msgstr ""
+"The plugin uses a \"Transients\" system. The fact is fetched once a day and "
+"stored locally to ensure optimal loading speed."
+
+#: chuck365-fact-viewer.php:167
+msgid "Design cohérent :"
+msgstr "Consistent Design:"
+
+#: chuck365-fact-viewer.php:167
+msgid ""
+"Utilisez les presets dans l'onglet \"Réglages\" pour adapter rapidement le "
+"widget à la charte graphique de votre thème."
+msgstr ""
+"Use the presets in the \"Settings\" tab to quickly adapt the widget to your "
+"theme's visual identity."
+
+#: chuck365-fact-viewer.php:171
+msgid "Note technique :"
+msgstr "Technical Note:"
+
+#: chuck365-fact-viewer.php:171
+msgid ""
+"Si vous changez les couleurs et que vous utilisez un plugin de cache (WP "
+"Rocket, Autoptimize), pensez à vider le cache pour voir les modifications "
+"immédiatement sur votre site."
+msgstr ""
+"If you change the colors and use a caching plugin (WP Rocket, Autoptimize), "
+"remember to clear the cache to see the changes immediately on your site."
+
+#: chuck365-fact-viewer.php:177
+msgid "Pourquoi soutenir le projet Chuck365.fr ?"
+msgstr "Why support the Chuck365.fr project?"
+
+#: chuck365-fact-viewer.php:178
+msgid ""
+"Soutenir Chuck365, ce n'est pas seulement financer un serveur, c'est "
+"participer à la diffusion d'une institution du web. Voici pourquoi votre "
+"contribution est essentielle :"
+msgstr ""
+"Supporting Chuck365 is not just funding a server, it is participating in the "
+"spread of a web institution. Here is why your contribution matters:"
+
+#: chuck365-fact-viewer.php:181
+msgid ""
+"Derrière chaque \"Fact\", une API tourne 24h/24. Votre soutien aide à "
+"couvrir les frais d'hébergement."
+msgstr ""
+"Behind every \"Fact\", an API runs 24/7. Your support helps cover hosting "
+"costs."
+
+#: chuck365-fact-viewer.php:182
+msgid ""
+"Nous refusons de polluer l'interface. Ce modèle repose sur la bienveillance "
+"de la communauté."
+msgstr ""
+"We refuse to clutter the interface with ads. This model relies on the "
+"goodwill of the community."
+
+#: chuck365-fact-viewer.php:183
+msgid ""
+"Amélioration de l'algorithme, nouvelles intégrations et maintenance de la "
+"compatibilité WordPress."
+msgstr ""
+"Algorithm improvements, new integrations and WordPress compatibility "
+"maintenance."
+
+#: chuck365-fact-viewer.php:184
+msgid ""
+"Développer selon les standards de 2026 demande du temps. Vous valorisez "
+"ainsi le travail de Papy 3D Factory."
+msgstr ""
+"Developing to 2026 standards takes time. You are supporting the work of Papy "
+"3D Factory."
+
+#: chuck365-fact-viewer.php:188
+msgid "Le saviez-vous ?"
+msgstr "Did you know?"
+
+#: chuck365-fact-viewer.php:189
+msgid ""
+"Chuck Norris ne dort jamais. Il attend. Mais en attendant, il boit du café. "
+"Offrez-lui-en un pour qu'il continue de veiller sur votre site web !"
+msgstr ""
+"Chuck Norris never sleeps. He waits. But while waiting, he drinks coffee. "
+"Buy him one so he keeps watching over your website!"
+
+#: chuck365-fact-viewer.php:207
+msgid "Le Projet Chuck365.fr"
+msgstr "The Chuck365.fr Project"
+
+#: chuck365-fact-viewer.php:208
+msgid ""
+"Voici une présentation du projet Chuck365, une initiative dédiée à la force "
+"brute et à l'humour légendaire de Chuck Norris, conçue pour les développeurs "
+"et les administrateurs de sites web."
+msgstr ""
+"Here is a presentation of the Chuck365 project, an initiative dedicated to "
+"the raw power and legendary humor of Chuck Norris, designed for developers "
+"and website administrators."
+
+#: chuck365-fact-viewer.php:210
+msgid ""
+"Chuck365.fr est une plateforme dont l'unique mission est de propager la "
+"sagesse (parfois percutante) de Chuck Norris à travers le web. Le concept "
+"est simple mais implacable : offrir chaque jour un fait unique et aléatoire "
+"sur l'homme qui a fait pleurer un oignon."
+msgstr ""
+"Chuck365.fr is a platform whose sole mission is to spread the wisdom "
+"(sometimes hard-hitting) of Chuck Norris across the web. The concept is "
+"simple but relentless: offer every day a unique and random fact about the "
+"man who made an onion cry."
+
+#: chuck365-fact-viewer.php:212
+msgid ""
+"Contrairement aux bases de données statiques, Chuck365 mise sur la fraîcheur "
+"de son contenu pour garantir que vos utilisateurs ne lisent jamais deux fois "
+"la même vérité universelle dans un intervalle réduit."
+msgstr ""
+"Unlike static databases, Chuck365 bets on fresh content to ensure your users "
+"never read the same universal truth twice within a short period."
+
+#: chuck365-fact-viewer.php:214
+msgid "Une API Puissante et Légère"
+msgstr "A Powerful and Lightweight API"
+
+#: chuck365-fact-viewer.php:215
+msgid ""
+"Au cœur du projet se trouve une API REST robuste conçue pour une intégration "
+"universelle."
+msgstr ""
+"At the heart of the project lies a robust REST API designed for universal "
+"integration."
+
+#: chuck365-fact-viewer.php:217
+msgid "Unique et Quotidien :"
+msgstr "Unique and Daily:"
+
+#: chuck365-fact-viewer.php:217
+msgid ""
+"L'API est optimisée pour fournir un \"Fact du jour\" cohérent pour tous les "
+"utilisateurs."
+msgstr ""
+"The API is optimized to provide a consistent \"Fact of the Day\" for all "
+"users."
+
+#: chuck365-fact-viewer.php:218
+msgid "Format JSON :"
+msgstr "JSON Format:"
+
+#: chuck365-fact-viewer.php:218
+msgid ""
+"Les réponses sont livrées en JSON, permettant une manipulation facile en "
+"JavaScript, PHP, Python ou tout autre langage moderne."
+msgstr ""
+"Responses are delivered in JSON, allowing easy handling in JavaScript, PHP, "
+"Python or any other modern language."
+
+#: chuck365-fact-viewer.php:219
+msgid "Haute Disponibilité :"
+msgstr "High Availability:"
+
+#: chuck365-fact-viewer.php:219
+msgid ""
+"Hébergée pour répondre plus vite qu'un high-kick, l'API supporte des "
+"requêtes provenant de divers environnements sans latence perceptible."
+msgstr ""
+"Hosted to respond faster than a high-kick, the API handles requests from "
+"various environments with no noticeable latency."
+
+#: chuck365-fact-viewer.php:222
+msgid "Le Plugin Chuck365 Fact Viewer"
+msgstr "The Chuck365 Fact Viewer Plugin"
+
+#: chuck365-fact-viewer.php:223
+msgid ""
+"Pour les utilisateurs de WordPress, le plugin Chuck365 Fact Viewer "
+"(actuellement en version 2.0.1) agit comme le pont direct entre la puissance "
+"de l'API et votre interface utilisateur."
+msgstr ""
+"For WordPress users, the Chuck365 Fact Viewer plugin (currently version "
+"2.0.1) acts as the direct bridge between the power of the API and your user "
+"interface."
+
+#: chuck365-fact-viewer.php:225
+msgid "Caractéristiques Principales :"
+msgstr "Key Features:"
+
+#: chuck365-fact-viewer.php:227
+msgid "Affichage Dynamique :"
+msgstr "Dynamic Display:"
+
+#: chuck365-fact-viewer.php:227
+msgid "Le plugin récupère automatiquement les faits via l'API officielle."
+msgstr "The plugin automatically fetches facts via the official API."
+
+#: chuck365-fact-viewer.php:228
+msgid "Performance Optimisée :"
+msgstr "Optimized Performance:"
+
+#: chuck365-fact-viewer.php:228
+msgid ""
+"Utilisation d'un système de mise en cache (transients) qui stocke le fait "
+"jusqu'au lendemain."
+msgstr ""
+"Uses a caching system (transients) that stores the fact until the next day."
+
+#: chuck365-fact-viewer.php:229
+msgid "Personnalisation Totale :"
+msgstr "Full Customization:"
+
+#: chuck365-fact-viewer.php:229
+msgid "Interface d'administration dédiée pour modifier les couleurs et titres."
+msgstr "Dedicated admin interface to customize colors and titles."
+
+#: chuck365-fact-viewer.php:230
+msgid "Gutenberg & Shortcode :"
+msgstr "Gutenberg & Shortcode:"
+
+#: chuck365-fact-viewer.php:230
+msgid "Compatible avec l'éditeur moderne et utilisable via [chuck_fact]."
+msgstr "Compatible with the modern editor and usable via [chuck_fact]."
+
+#: chuck365-fact-viewer.php:231
+msgid "Sécurité Native :"
+msgstr "Built-in Security:"
+
+#: chuck365-fact-viewer.php:231
+msgid ""
+"Développé avec des standards stricts (PHP 8.5+, protection CSRF, "
+"assainissement des données)."
+msgstr ""
+"Developed with strict standards (PHP 8.1+, CSRF protection, data "
+"sanitization)."
+
+#: chuck365-fact-viewer.php:234
+msgid "Pourquoi l'utiliser ?"
+msgstr "Why use it?"
+
+#: chuck365-fact-viewer.php:235
+msgid ""
+"Ajouter une touche d'humour à un tableau de bord ou à une barre latérale de "
+"blog n'a jamais été aussi simple. Le projet Chuck365 prouve que même la "
+"technologie la plus sérieuse peut avoir un crochet du droit redoutable... et "
+"très drôle."
+msgstr ""
+"Adding a touch of humor to a dashboard or blog sidebar has never been "
+"easier. The Chuck365 project proves that even the most serious technology "
+"can have a mean right hook... and be very funny."
+
+#: chuck365-fact-viewer.php:237
+msgid ""
+"Note : Chuck Norris n'utilise pas d'API. Les données se déplacent par peur "
+"de le contrarier."
+msgstr ""
+"Note: Chuck Norris does not use an API. Data moves out of fear of upsetting "
+"him."
+
+#: chuck365-fact-viewer.php:254
+msgid "Chuck est occupé."
+msgstr "Chuck is busy."
+
+#: chuck365-fact-viewer.php:263 chuck365-fact-viewer.php:264
+msgid "Chuck se repose."
+msgstr "Chuck is resting."
+
+#: chuck365-fact-viewer.php:306
+msgid "Visiter le site"
+msgstr "Visit the website"
+
+#: block/edit.js:28
+msgid "Configuration Style"
+msgstr "Style Settings"
+
+#: block/edit.js:34
+msgid "Couleur de Bordure"
+msgstr "Border Color"
+
+#: block/edit.js:39
+msgid "Couleur de Fond"
+msgstr "Background Color"
+
+#: block/edit.js:44
+msgid "Couleur du Texte"
+msgstr "Text Color"
+
+#: block/edit.js:58
+msgid "Le fait de Chuck Norris s'affichera ici."
+msgstr "The Chuck Norris fact will be displayed here."
+
+#: block/edit.js:67
+msgid "Afficher le copyright"
+msgstr ""
+
+#: block/block.json
+msgctxt "block title"
+msgid "Chuck365 Fact Viewer"
+msgstr "Chuck365 Fact Viewer"
+
+#: block/block.json
+msgctxt "block description"
+msgid "Affiche un fait de Chuck Norris chaque jour."
+msgstr "Displays a Chuck Norris fact every day."

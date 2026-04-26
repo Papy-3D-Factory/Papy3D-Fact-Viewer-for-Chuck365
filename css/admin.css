@@ -1,0 +1,189 @@
+.chuck-admin h1 {
+    margin-bottom: 20px;
+}
+
+.chuck-admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chuck-admin-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.chuck-admin-card h2 {
+    margin-top: 0;
+}
+
+.chuck-admin-card label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.chuck-admin-card input[type="text"],
+.chuck-admin-card input[type="color"] {
+    margin-top: 5px;
+    width: 100%;
+    max-width: 250px;
+}
+
+#chuck-preview {
+    margin-top: 15px;
+}
+
+.cn-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cn-custom-icon {
+    width: 74px;  
+    height: 74px; 
+    object-fit: contain;
+}
+
+
+.cn-main-box:hover .cn-custom-icon {
+    transform: scale(1.2) rotate(5deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.copyright {
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+}
+
+.cn-main-box {
+    all: initial !important;
+    display: block !important;
+    border: 4px solid var(--chuck-border) !important;
+    background-color: var(--chuck-bg) !important;
+    padding: 30px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    margin: 25px 0 !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.cn-top-label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: var(--chuck-text) !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 20px !important;
+    font-size: 14px !important;
+}
+
+.cn-content-area {
+    font-size: 1.3em !important;
+    line-height: 1.6 !important;
+    color: var(--chuck-text) !important;
+    font-style: italic !important;
+    padding: 0 0 0 25px !important;
+    position: relative !important;
+}
+
+.cn-content-area,
+.cn-content-area * {
+    background: transparent !important;
+}
+
+.cn-content-area {
+    background: var(--chuck-bg) !important;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.cn-main-box blockquote,
+.cn-main-box .cn-content-area {
+    background: var(--chuck-bg) !important;
+    color: var(--chuck-text, #333) !important; /* AJOUT : Utilisation de la couleur choisie */
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.cn-main-box code {
+	 background: transparent !important;
+}
+
+.cn-quote-mark {
+    color: var(--chuck-text) !important;
+    font-size: 3em !important;
+    position: absolute !important;
+    left: -10px !important;
+    top: -15px !important;
+    opacity: 0.3 !important;
+    font-family: serif !important;
+}
+
+.cn-bottom-bar {
+    margin-top: 25px !important;
+    padding-top: 15px !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+.cn-link-btn {
+    background: var(--chuck-border) !important;
+    color: #fff !important;
+    padding: 4px 10px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+}
+
+.chuck-amount-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chuck-amount-input {
+    width: 70px;
+    text-align: center;
+    border: 1px solid #f39c12 !important;
+    border-radius: 4px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.chuck-currency-symbol {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.chuck-coffee-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.chuck-coffee-button:hover {
+    transform: scale(1.05);
+}
+
+.chuck-coffee-button img {
+    max-width: 380px;
+    height: auto;
+}
