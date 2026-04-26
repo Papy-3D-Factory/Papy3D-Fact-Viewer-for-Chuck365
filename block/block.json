@@ -7,19 +7,18 @@
     "icon": "superhero",
     "description": "Affiche un fait de Chuck Norris chaque jour.",
     "textdomain": "chuck365-fact-viewer",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "supports": {
         "html": false,
         "anchor": true
     },
     "attributes": {
-        "borderColor": { "type": "string", "default": "#f39c12" },
-        "bgColor": { "type": "string", "default": "#ffffff" },
-        "textColor": { "type": "string", "default": "#222222" },
-        "title": { "type": "string", "default": "Chuck Fact" },
-		"showCopyright": { "type": "boolean", "default": true }
+        "borderColor":   { "type": "string" },
+        "bgColor":       { "type": "string" },
+        "textColor":     { "type": "string" },
+        "title":         { "type": "string" },
+        "showCopyright": { "type": "boolean", "default": true }
     },
     "style": "chuck365-style",
-    "editorScript": "file:./edit.js",
-    "viewScript": "file:./ajax.js"
+    "editorScript": "chuck365-editor-script"
 }

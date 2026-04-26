@@ -5,21 +5,32 @@
     var ColorPalette = wp.blockEditor.ColorPalette;
     var PanelBody = wp.components.PanelBody;
     var TextControl = wp.components.TextControl;
+    var ToggleControl = wp.components.ToggleControl;
     var el = wp.element.createElement;
     var Fragment = wp.element.Fragment;
     var __ = wp.i18n.__;
+
+    // Valeurs par défaut injectées depuis l'admin PHP via wp_localize_script
+    var defaults = window.chuck365Defaults || {};
 
     registerBlockType('chuck365/viewer', {
         edit: function (props) {
             var attributes = props.attributes;
             var setAttributes = props.setAttributes;
 
+            // block.json sans "default" → attributs undefined pour un nouveau bloc
+            // On prend alors les réglages admin, puis le fallback codé en dur
+            var border = attributes.borderColor || defaults.borderColor || '#f39c12';
+            var bg     = attributes.bgColor     || defaults.bgColor     || '#ffffff';
+            var color  = attributes.textColor   || defaults.textColor   || '#222222';
+            var title  = attributes.title       || defaults.title       || 'Chuck Fact';
+
             var blockProps = useBlockProps({
                 className: 'cn-main-box',
                 style: {
-                    '--chuck-border': attributes.borderColor,
-                    '--chuck-bg': attributes.bgColor,
-                    '--chuck-text': attributes.textColor,
+                    '--chuck-border': border,
+                    '--chuck-bg': bg,
+                    '--chuck-text': color,
                 }
             });
 
@@ -28,33 +39,38 @@
                     el(PanelBody, { title: __('Configuration Style', 'chuck365-fact-viewer') },
                         el(TextControl, {
                             label: __('Titre', 'chuck365-fact-viewer'),
-                            value: attributes.title,
+                            value: title,
                             onChange: function (val) { setAttributes({ title: val }); }
                         }),
                         el('p', {}, __('Couleur de Bordure', 'chuck365-fact-viewer')),
                         el(ColorPalette, {
-                            value: attributes.borderColor,
+                            value: border,
                             onChange: function (val) { setAttributes({ borderColor: val }); }
                         }),
                         el('p', {}, __('Couleur de Fond', 'chuck365-fact-viewer')),
                         el(ColorPalette, {
-                            value: attributes.bgColor,
+                            value: bg,
                             onChange: function (val) { setAttributes({ bgColor: val }); }
                         }),
                         el('p', {}, __('Couleur du Texte', 'chuck365-fact-viewer')),
                         el(ColorPalette, {
-                            value: attributes.textColor,
+                            value: color,
                             onChange: function (val) { setAttributes({ textColor: val }); }
+                        }),
+                        el(ToggleControl, {
+                            label: __('Afficher le copyright', 'chuck365-fact-viewer'),
+                            checked: attributes.showCopyright,
+                            onChange: function (val) { setAttributes({ showCopyright: val }); }
                         })
                     )
                 ),
                 el('div', blockProps,
                     el('div', { className: 'cn-top-label' },
                         el('span', {}, '🥋 '),
-                        el('span', { className: 'cn-title-text' }, attributes.title)
+                        el('span', { className: 'cn-title-text' }, title)
                     ),
                     el('div', { className: 'cn-content-area' },
-                        el('span', { className: 'cn-quote-mark' }, '“'),
+                        el('span', { className: 'cn-quote-mark' }, '"'),
                         __('Le fait de Chuck Norris s\'affichera ici.', 'chuck365-fact-viewer')
                     ),
                     el('div', { className: 'cn-bottom-bar' },
@@ -62,12 +78,7 @@
                             el('span', { className: 'cn-copy-info' }, '© ' + new Date().getFullYear() + ' — Chuck365')
                         )
                     )
-                ),
-				el(wp.components.ToggleControl, {
-					label: __('Afficher le copyright', 'chuck365-fact-viewer'),
-					checked: attributes.showCopyright,
-					onChange: function (val) { setAttributes({ showCopyright: val }); }
-				}),
+                )
             );
         },
         save: function () { return null; }

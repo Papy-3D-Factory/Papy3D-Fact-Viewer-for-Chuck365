@@ -3,7 +3,7 @@
  * Plugin Name: Chuck365 Fact Viewer
  * Plugin URI: https://chuck365.fr
  * Description: Un plugin pour afficher chaque jour une anecdote unique et différente sur Chuck Norris.
- * Version: 2.0.2
+ * Version: 2.0.3
  * Author: Papy 3D Factory
  * Text Domain: chuck365-fact-viewer
  * License: GPLv3
@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 if (!defined('ABSPATH')) exit;
 
-$Chuck365_Fact_Viewer_version = '2.0.2';
+// ✅ FIX 1 : la variable s'appelait $Chuck365_Fact_Viewer_version mais on définissait CHUCK365_VERSION avec $c365_version (undefined)
+$Chuck365_Fact_Viewer_version = '2.0.3';
 if (defined('WP_DEBUG') && WP_DEBUG) {
     $Chuck365_Fact_Viewer_version .= '.' . filemtime(plugin_dir_path(__FILE__) . 'js/admin-settings.js');
 }
-
-define('CHUCK365_VERSION', $c365_version);
+define('CHUCK365_VERSION', $Chuck365_Fact_Viewer_version);
 
 class Chuck365_Fact_Viewer_Plugin {
 
@@ -31,34 +31,62 @@ class Chuck365_Fact_Viewer_Plugin {
         add_action('wp_ajax_chuck365_get_fact', [$this, 'ajax_fact']);
         add_action('wp_ajax_nopriv_chuck365_get_fact', [$this, 'ajax_fact']);
         add_action('admin_enqueue_scripts', [$this, 'admin_assets']);
+        // ✅ FIX 2 : hook dédié pour injecter chuck365Defaults dans l'éditeur Gutenberg
+        add_action('enqueue_block_editor_assets', [$this, 'enqueue_editor_defaults']);
     }
 
     public function i18n(): void {
-		// WordPress gère désormais l'i18n automatiquement via le Header "Text Domain"
-        //load_plugin_textdomain('chuck365-fact-viewer', false, dirname(plugin_basename(__FILE__)) . '/languages');
+        // WordPress gère désormais l'i18n automatiquement via le Header "Text Domain"
     }
 
     public function register_block_modern(): void {
-		wp_register_script(
-			'chuck365-editor-script',
-			plugins_url('block/edit.js', __FILE__),
-			array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
-			CHUCK365_VERSION,
-			true // Ajout du paramètre $in_footer à true
-		);
+        // ✅ FIX 3 : style enregistré EN PREMIER
+        wp_register_style(
+            'chuck365-style',
+            plugins_url('css/style.css', __FILE__),
+            [],
+            (string)filemtime(__DIR__ . '/css/style.css')
+        );
 
-		// Pour le style, application de votre règle de versioning automatique
-		wp_register_style(
-			'chuck365-style', 
-			plugins_url('css/style.css', __FILE__), 
-			[], 
-			(string)filemtime(__DIR__ . '/css/style.css') // Utilisation du fichier réel pour le timestamp
-		);
+        wp_register_script(
+            'chuck365-editor-script',
+            plugins_url('block/edit.js', __FILE__),
+            array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
+            CHUCK365_VERSION,
+            true
+        );
 
-		register_block_type_from_metadata(__DIR__ . '/block', [
-			'render_callback' => [$this, 'render'],
-		]);   
-	}
+        register_block_type_from_metadata(__DIR__ . '/block', [
+            'render_callback' => [$this, 'render'],
+        ]);
+		
+		// Chargement de ajax.js uniquement sur le front-end (pas dans l'admin)
+		if (!is_admin()) {
+			wp_enqueue_script(
+				'chuck365-view-script',
+				plugins_url('block/ajax.js', __FILE__),
+				[],
+				CHUCK365_VERSION,
+				true
+			);
+		}
+    }
+
+    // ✅ FIX 2 : méthode dédiée — enqueue_block_editor_assets garantit
+    // que le script est chargé ET que l'inline script s'exécute avant edit.js
+    public function enqueue_editor_defaults(): void {
+        wp_enqueue_script('chuck365-editor-script');
+        wp_add_inline_script(
+            'chuck365-editor-script',
+            'window.chuck365Defaults = ' . wp_json_encode([
+                'borderColor' => get_option('chuck365_border_color', '#f39c12'),
+                'bgColor'     => get_option('chuck365_bg_color', '#ffffff'),
+                'textColor'   => get_option('chuck365_text_color', '#222222'),
+                'title'       => get_option('chuck365_text_title', 'Chuck Fact'),
+            ]) . ';',
+            'before'
+        );
+    }
 
     public function admin_assets($hook): void {
         if ($hook !== 'toplevel_page_chuck365') return;
@@ -100,7 +128,7 @@ class Chuck365_Fact_Viewer_Plugin {
 
             <div id="tab-content-settings" class="tab-content">
                 <div id="poststuff">
-                    <div id="post-body" class="metabox-holder columns-1"> 
+                    <div id="post-body" class="metabox-holder columns-1">
                         <div id="post-body-content">
                             <form method="post" action="options.php">
                                 <?php settings_fields('chuck365-group'); do_settings_sections('chuck365-group'); ?>
@@ -152,52 +180,46 @@ class Chuck365_Fact_Viewer_Plugin {
                     <?php echo wp_kses_post($this->render()); ?>
                 </div>
             </div>
+
             <div id="tab-content-help" class="tab-content" style="display:none;">
                 <div class="card" style="max-width: 1000px; padding: 20px; line-height: 1.6;">
                     <h2>📖 <?php esc_html_e('Comment afficher les Chuck Norris Facts ?', 'chuck365-fact-viewer'); ?></h2>
                     <p><?php esc_html_e('Vous avez deux méthodes simples pour intégrer la puissance de Chuck sur votre site.', 'chuck365-fact-viewer'); ?></p>
-
                     <div style="margin-bottom: 25px;">
                         <h3>1. <?php esc_html_e('Via l\'éditeur Gutenberg (Recommandé)', 'chuck365-fact-viewer'); ?></h3>
                         <p><?php esc_html_e('Recherchez simplement le bloc nommé <strong>"Chuck365 Fact"</strong> dans l\'éditeur de vos pages ou articles. Vous pourrez voir l\'aperçu en direct.', 'chuck365-fact-viewer'); ?></p>
                     </div>
-
                     <div style="margin-bottom: 25px;">
                         <h3>2. <?php esc_html_e('Via le Shortcode', 'chuck365-fact-viewer'); ?></h3>
                         <p><?php esc_html_e('Copiez et collez le code suivant là où vous souhaitez afficher le fait (Widget texte, constructeur de page, etc.) :', 'chuck365-fact-viewer'); ?></p>
                         <code>[chuck_fact]</code>
                     </div>
-
                     <hr>
-
                     <h3>💡 <?php esc_html_e('Conseils d\'optimisation', 'chuck365-fact-viewer'); ?></h3>
                     <ul>
                         <li><strong><?php esc_html_e('Mise en cache :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Le plugin utilise un système de "Transients". Le fait est récupéré une seule fois par jour et stocké localement pour garantir une vitesse de chargement optimale.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong><?php esc_html_e('Design cohérent :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Utilisez les presets dans l\'onglet "Réglages" pour adapter rapidement le widget à la charte graphique de votre thème.', 'chuck365-fact-viewer'); ?></li>
                     </ul>
-
                     <div style="background: #fff8e5; padding: 15px; border-left: 4px solid #ffb900; margin-top: 20px;">
                         <p style="margin: 0;">⚠️ <strong><?php esc_html_e('Note technique :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Si vous changez les couleurs et que vous utilisez un plugin de cache (WP Rocket, Autoptimize), pensez à vider le cache pour voir les modifications immédiatement sur votre site.', 'chuck365-fact-viewer'); ?></p>
                     </div>
                 </div>
             </div>
+
             <div id="tab-content-project" class="tab-content" style="display:none;">
                 <div class="card" style="max-width: 1000px; padding: 30px; line-height: 1.6;">
                     <h2 style="color: #d63638;">🚀 <?php esc_html_e('Pourquoi soutenir le projet Chuck365.fr ?', 'chuck365-fact-viewer'); ?></h2>
                     <p><?php esc_html_e('Soutenir Chuck365, ce n\'est pas seulement financer un serveur, c\'est participer à la diffusion d\'une institution du web. Voici pourquoi votre contribution est essentielle :', 'chuck365-fact-viewer'); ?></p>
-                    
                     <ol>
                         <li><strong>Maintenir une infrastructure "Punchy" :</strong> <?php esc_html_e('Derrière chaque "Fact", une API tourne 24h/24. Votre soutien aide à couvrir les frais d\'hébergement.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong>Un projet Indépendant et Sans Pub :</strong> <?php esc_html_e('Nous refusons de polluer l\'interface. Ce modèle repose sur la bienveillance de la communauté.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong>Booster le développement futur :</strong> <?php esc_html_e('Amélioration de l\'algorithme, nouvelles intégrations et maintenance de la compatibilité WordPress.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong>Offrir un café à la forge :</strong> <?php esc_html_e('Développer selon les standards de 2026 demande du temps. Vous valorisez ainsi le travail de Papy 3D Factory.', 'chuck365-fact-viewer'); ?></li>
                     </ol>
-
                     <div style="background: #f0f0f1; padding: 20px; border-left: 4px solid #d63638; margin: 20px 0;">
                         <strong><?php esc_html_e('Le saviez-vous ?', 'chuck365-fact-viewer'); ?></strong><br>
                         <?php esc_html_e('Chuck Norris ne dort jamais. Il attend. Mais en attendant, il boit du café. Offrez-lui-en un pour qu\'il continue de veiller sur votre site web !', 'chuck365-fact-viewer'); ?>
                     </div>
-
                     <div style="text-align: center; margin-top: 30px;">
                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
                             <input type="hidden" name="cmd" value="_donations">
@@ -215,11 +237,8 @@ class Chuck365_Fact_Viewer_Plugin {
                 <div class="card" style="max-width: 1000px; padding: 20px; line-height: 1.6;">
                     <h2>🚀 <?php esc_html_e('Le Projet Chuck365.fr', 'chuck365-fact-viewer'); ?></h2>
                     <p><?php esc_html_e('Voici une présentation du projet Chuck365, une initiative dédiée à la force brute et à l\'humour légendaire de Chuck Norris, conçue pour les développeurs et les administrateurs de sites web.', 'chuck365-fact-viewer'); ?></p>
-                    
                     <p><?php esc_html_e('Chuck365.fr est une plateforme dont l\'unique mission est de propager la sagesse (parfois percutante) de Chuck Norris à travers le web. Le concept est simple mais implacable : offrir chaque jour un fait unique et aléatoire sur l\'homme qui a fait pleurer un oignon.', 'chuck365-fact-viewer'); ?></p>
-                    
                     <p><?php esc_html_e('Contrairement aux bases de données statiques, Chuck365 mise sur la fraîcheur de son contenu pour garantir que vos utilisateurs ne lisent jamais deux fois la même vérité universelle dans un intervalle réduit.', 'chuck365-fact-viewer'); ?></p>
-
                     <h3>🔌 <?php esc_html_e('Une API Puissante et Légère', 'chuck365-fact-viewer'); ?></h3>
                     <p><?php esc_html_e('Au cœur du projet se trouve une API REST robuste conçue pour une intégration universelle.', 'chuck365-fact-viewer'); ?></p>
                     <ul>
@@ -227,28 +246,24 @@ class Chuck365_Fact_Viewer_Plugin {
                         <li><strong><?php esc_html_e('Format JSON :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Les réponses sont livrées en JSON, permettant une manipulation facile en JavaScript, PHP, Python ou tout autre langage moderne.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong><?php esc_html_e('Haute Disponibilité :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Hébergée pour répondre plus vite qu\'un high-kick, l\'API supporte des requêtes provenant de divers environnements sans latence perceptible.', 'chuck365-fact-viewer'); ?></li>
                     </ul>
-
                     <h3>📦 <?php esc_html_e('Le Plugin Chuck365 Fact Viewer', 'chuck365-fact-viewer'); ?></h3>
-                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Chuck365 Fact Viewer (actuellement en version 2.0.1) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'chuck365-fact-viewer'); ?></p>
-                    
+                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Chuck365 Fact Viewer (actuellement en version 2.0.2) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'chuck365-fact-viewer'); ?></p>
                     <h4><?php esc_html_e('Caractéristiques Principales :', 'chuck365-fact-viewer'); ?></h4>
                     <ul>
                         <li><strong><?php esc_html_e('Affichage Dynamique :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Le plugin récupère automatiquement les faits via l\'API officielle.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong><?php esc_html_e('Performance Optimisée :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Utilisation d\'un système de mise en cache (transients) qui stocke le fait jusqu\'au lendemain.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong><?php esc_html_e('Personnalisation Totale :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Interface d\'administration dédiée pour modifier les couleurs et titres.', 'chuck365-fact-viewer'); ?></li>
                         <li><strong><?php esc_html_e('Gutenberg & Shortcode :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Compatible avec l\'éditeur moderne et utilisable via [chuck_fact].', 'chuck365-fact-viewer'); ?></li>
-                        <li><strong><?php esc_html_e('Sécurité Native :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Développé avec des standards stricts (PHP 8.5+, protection CSRF, assainissement des données).', 'chuck365-fact-viewer'); ?></li>
+                        <li><strong><?php esc_html_e('Sécurité Native :', 'chuck365-fact-viewer'); ?></strong> <?php esc_html_e('Développé avec des standards stricts (PHP 8.1+, protection CSRF, assainissement des données).', 'chuck365-fact-viewer'); ?></li>
                     </ul>
-
                     <h4><?php esc_html_e('Pourquoi l\'utiliser ?', 'chuck365-fact-viewer'); ?></h4>
                     <p><?php esc_html_e('Ajouter une touche d\'humour à un tableau de bord ou à une barre latérale de blog n\'a jamais été aussi simple. Le projet Chuck365 prouve que même la technologie la plus sérieuse peut avoir un crochet du droit redoutable... et très drôle.', 'chuck365-fact-viewer'); ?></p>
-
                     <p><em><?php esc_html_e('Note : Chuck Norris n\'utilise pas d\'API. Les données se déplacent par peur de le contrarier.', 'chuck365-fact-viewer'); ?></em></p>
                     <hr>
                     <p>
-   						 <strong>Version :</strong> <?php echo esc_html(CHUCK365_VERSION); ?> | 
-   						 <strong>Auteur :</strong> <?php echo esc_html__('Papy 3D Factory', 'chuck365-fact-viewer'); ?>
-					</p>
+                        <strong>Version :</strong> <?php echo esc_html(CHUCK365_VERSION); ?> |
+                        <strong>Auteur :</strong> <?php echo esc_html__('Papy 3D Factory', 'chuck365-fact-viewer'); ?>
+                    </p>
                 </div>
             </div>
 
@@ -262,7 +277,7 @@ class Chuck365_Fact_Viewer_Plugin {
     public function get_fact(): string {
         $cached = get_transient('chuck365_fact');
         if (is_string($cached)) return $cached;
-        $response = wp_remote_get('https://chuck365.fr/api.php', ['timeout' => 10, 'user-agent' => 'Chuck365-Viewer/2.0.1; ' . home_url()]);
+        $response = wp_remote_get('https://chuck365.fr/api.php', ['timeout' => 10, 'user-agent' => 'Chuck365-Viewer/2.0.2; ' . home_url()]);
         if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) return (string)__('Chuck est occupé.', 'chuck365-fact-viewer');
         $body = wp_remote_retrieve_body($response);
         try {
@@ -272,7 +287,9 @@ class Chuck365_Fact_Viewer_Plugin {
                 set_transient('chuck365_fact', $fact, max(HOUR_IN_SECONDS, strtotime('tomorrow') - time()));
                 return $fact;
             }
-        } catch (\JsonException $e) { return (string)__('Chuck se repose.', 'chuck365-fact-viewer'); }
+        } catch (\JsonException $e) {
+            return (string)__('Chuck se repose.', 'chuck365-fact-viewer');
+        }
         return (string)__('Chuck se repose.', 'chuck365-fact-viewer');
     }
 
@@ -283,51 +300,53 @@ class Chuck365_Fact_Viewer_Plugin {
 
     public function shortcode_render($atts): string {
         wp_enqueue_style('chuck365-style');
-        $custom_css = ".cn-main-box { --chuck-border: ".esc_attr(get_option('chuck365_border_color','#f39c12'))."; --chuck-bg: ".esc_attr(get_option('chuck365_bg_color','#ffffff'))."; --chuck-text: ".esc_attr(get_option('chuck365_text_color','#222222'))."; }";
-        wp_add_inline_style('chuck365-style', $custom_css);
-        return $this->render();
+        return $this->render([
+            'borderColor'   => get_option('chuck365_border_color', '#f39c12'),
+            'bgColor'       => get_option('chuck365_bg_color', '#ffffff'),
+            'textColor'     => get_option('chuck365_text_color', '#222222'),
+            'title'         => get_option('chuck365_text_title', 'Chuck Norris Fact du jour'),
+            'showCopyright' => get_option('chuck365_show_copyright', true),
+        ]);
     }
 
     public function render(array $attributes = []): string {
-        $border = (string)($attributes['borderColor'] ?? get_option('chuck365_border_color', '#f39c12'));
-        $bg = (string)($attributes['bgColor'] ?? get_option('chuck365_bg_color', '#ffffff'));
-        $color = (string)($attributes['textColor'] ?? get_option('chuck365_text_color', '#222222'));
-        $title = (string)($attributes['title'] ?? get_option('chuck365_text_title', 'Chuck Norris Fact du jour'));
-        
-        // Priorité à l'attribut du bloc, sinon on prend l'option générale de l'admin
+        $border       = (string)($attributes['borderColor']   ?? get_option('chuck365_border_color', '#f39c12'));
+        $bg           = (string)($attributes['bgColor']       ?? get_option('chuck365_bg_color', '#ffffff'));
+        $color        = (string)($attributes['textColor']     ?? get_option('chuck365_text_color', '#222222'));
+        $title        = (string)($attributes['title']         ?? get_option('chuck365_text_title', 'Chuck Norris Fact du jour'));
         $showCopyright = isset($attributes['showCopyright']) ? (bool)$attributes['showCopyright'] : (bool)get_option('chuck365_show_copyright', true);
 
-        $icon_url = plugins_url('images/chuck.png', __FILE__);
-        $ajax_url = admin_url('admin-ajax.php');
-        $nonce = wp_create_nonce('chuck365_ajax_action');
-        $fact = $this->get_fact();
+        $icon_url  = plugins_url('images/chuck.png', __FILE__);
+        $ajax_url  = admin_url('admin-ajax.php');
+        $nonce     = wp_create_nonce('chuck365_ajax_action');
+        $fact      = $this->get_fact();
         $safe_fact = force_balance_tags(wp_kses_post($fact));
         $unique_id = 'chuck-title-' . bin2hex(random_bytes(4));
 
-        ob_start(); ?>
-        <div class="cn-main-box" data-ajax-url="<?php echo esc_url($ajax_url); ?>" data-nonce="<?php echo esc_attr($nonce); ?>" style="--chuck-border:<?php echo esc_attr($border); ?>; --chuck-bg:<?php echo esc_attr($bg); ?>; --chuck-text:<?php echo esc_attr($color); ?>;">
+        ob_start();
+        ?><div class="cn-main-box" data-ajax-url="<?php echo esc_url($ajax_url); ?>" data-nonce="<?php echo esc_attr($nonce); ?>" style="--chuck-border:<?php echo esc_attr($border); ?>; --chuck-bg:<?php echo esc_attr($bg); ?>; --chuck-text:<?php echo esc_attr($color); ?>;">
             <div class="cn-top-label">
                 <div class="cn-icon-container">
-					<img src="<?php echo esc_url($icon_url); ?>" 
-						 alt="<?php echo esc_attr__('Chuck Icon', 'chuck365-fact-viewer'); ?>" 
-						 class="cn-custom-icon img-fluid">
-				</div>
+                    <img src="<?php echo esc_url($icon_url); ?>"
+                         alt="<?php echo esc_attr__('Chuck Icon', 'chuck365-fact-viewer'); ?>"
+                         class="cn-custom-icon img-fluid">
+                </div>
                 <span class="cn-title-text" id="<?php echo esc_attr($unique_id); ?>"><?php echo esc_html($title); ?></span>
             </div>
             <div class="cn-content-area">
-				<blockquote class="d-inline m-0">
-					<?php echo wp_kses_post($safe_fact); ?>
-				</blockquote>
-			</div>
-            
+                <blockquote class="d-inline m-0">
+                    <?php echo wp_kses_post($safe_fact); ?>
+                </blockquote>
+            </div>
             <?php if ($showCopyright) : ?>
                 <div class="cn-bottom-bar">
                     <div class="cn-copy-wrapper"><span class="cn-copy-info">© <?php echo esc_html(gmdate('Y')); ?> — Chuck365</span></div>
                     <a href="https://chuck365.fr" target="_blank" rel="noopener noreferrer" class="cn-link-btn"><?php echo esc_html__('Visiter le site', 'chuck365-fact-viewer'); ?></a>
                 </div>
             <?php endif; ?>
-        </div>
-        <?php return ob_get_clean() ?: '';
+        </div><?php
+        return trim(ob_get_clean() ?: '');
     }
-} 
+}
+
 add_action('plugins_loaded', function() { new Chuck365_Fact_Viewer_Plugin(); });

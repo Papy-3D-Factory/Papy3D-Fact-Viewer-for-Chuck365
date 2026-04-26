@@ -4,7 +4,7 @@ Donate link:
 Tags: chuck norris, facts, widget, fun
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv3
 wp i18n make-mo languages/
 
