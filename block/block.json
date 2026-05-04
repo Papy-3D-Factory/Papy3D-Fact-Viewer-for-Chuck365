@@ -13,9 +13,9 @@
         "anchor": true
     },
     "attributes": {
-        "borderColor":   { "type": "string", "default": "#f39c12" },
-        "bgColor":       { "type": "string", "default": "#ffffff" },
-        "textColor":     { "type": "string", "default": "#222222" },
+        "borderColor":   { "type": "string" },
+        "bgColor":       { "type": "string" },
+        "textColor":     { "type": "string" },
         "title":         { "type": "string", "default": "Chuck Norris Fact du jour" },
         "showCopyright": { "type": "boolean", "default": true }
     },

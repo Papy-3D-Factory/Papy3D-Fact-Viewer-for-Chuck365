@@ -10,7 +10,7 @@
     var Fragment = wp.element.Fragment;
     var __ = wp.i18n.__;
 
-    var defaults = chuck365Defaults.borderColor || {};
+    var defaults = window.chuck365Defaults || {};
 
     registerBlockType('chuck365/viewer', {
         edit: function (props) {
