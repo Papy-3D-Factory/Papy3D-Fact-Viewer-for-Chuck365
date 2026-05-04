@@ -31,15 +31,16 @@ The plugin is built with performance and security as top priorities:
 
 == Changelog ==
 
-= 2.0.4 =
+= 2.0.5 =
+* Fix: Gutenberg editor no longer ignores admin color settings when inserting a new block.
+* Fix: Corrected a JavaScript error in `edit.js` where `chuck365Defaults` was read incorrectly, causing colors to fall back to hardcoded values instead of admin settings.
+* Fix: Removed hardcoded `default` values from `block.json` attributes (`borderColor`, `bgColor`, `textColor`, `title`) to allow proper fallback to admin settings.
+* Improvement: Admin color settings are now injected as Gutenberg block defaults via `enqueue_block_editor_assets` hook, ensuring new blocks always reflect the configured style.
 
-* Plugin name changed to Papy3D Fact Viewer for Chuck365
-* Security: Added Security Sanitization and Output Escaping (Late Escaping)
-* Removal of Development Functions
-* Standardized English description and cleaned up (removed residual command).
-* Updated: Language files and Gutenberg color handling.
-* Header and Documentation: Plugin headers and the readme.txt file have been updated
+= 2.0.4 =
+* Security: Added `rest_sanitize_boolean` to the `chuck365_show_copyright` setting for better data validation.
 * Maintenance: Incremented version to 2.0.4 and cleaned up the readme.txt file.
+* Updated: Language files and Gutenberg color handling.
 
 = 2.0.1 =
 * Security improvements.
