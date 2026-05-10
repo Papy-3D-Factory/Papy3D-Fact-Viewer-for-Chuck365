@@ -1,46 +1,175 @@
 # 🥋 Chuck365 Fact Viewer (WordPress Plugin)
 
-**Chuck365 Fact Viewer** est un plugin WordPress moderne conçu pour afficher un fait unique et hilarant de Chuck Norris chaque jour sur votre site. 
+**Chuck365 Fact Viewer** est un plugin WordPress moderne permettant d’afficher des Chuck Facts hilarants directement sur votre site avec un système avancé de cartes visuelles inspirées de l’univers western, Texas Ranger et Chuck Norris.
 
-Propulsé par l'API de [Chuck365.fr](https://chuck365.fr), ce plugin allie la puissance légendaire de Chuck Norris à une architecture logicielle robuste et élégante.
-
-## 🚀 Fonctionnalités
-
-* **Intégration Gutenberg Native** : Un bloc dédié avec prévisualisation en temps réel dans l'éditeur.
-* **Personnalisation Totale** : Modifiez les couleurs de bordure, de fond et de texte directement depuis l'inspecteur de blocs ou les réglages d'administration.
-* **Performance Optimisée** : Utilisation de `Transients` WordPress pour mettre en cache le "Fact" du jour et éviter les appels API inutiles.
-* **Système de Presets** : Changez le style en un clic (Original, Fire, Dark, Ocean, Forest, Gold).
-* **Shortcode Inclus** : Utilisez `[chuck_fact]` pour afficher Chuck où vous voulez.
-
-## 🛠️ Stack Technique
-
-* **PHP 8.3+** : Utilisation de `strict_types=1` pour une stabilité maximale.
-* **Sécurité renforcée** : Protection CSRF systématique et nettoyage des entrées (`clean_input`, `wp_kses_post`).
-* **JavaScript (Vanilla)** : Scripts légers sans dépendances lourdes pour une vitesse de chargement optimale.
-* **API REST** : Communication fluide avec le backend de Chuck365.fr via `wp_remote_get`.
-
-## 📂 Structure du Projet
-
-```text
-chuck365-viewer/
-├── block/               # Composants du bloc Gutenberg (JSON, Edit, Ajax)
-├── css/                 # Styles CSS (Front & Admin)
-├── images/              # Assets graphiques
-├── js/                  # Logique JavaScript (ColorPicker & Tabs)
-├── languages/           # Fichiers de traduction (.pot)
-└── chuck365-viewer.php  # Cœur du plugin et contrôleur principal
-```
-
-## 📥 Installation
-
-1. Téléchargez le dossier du plugin.
-2. Déposez-le dans `/wp-content/plugins/`.
-3. Activez **Chuck365 Fact Viewer** depuis votre tableau de bord WordPress.
-4. Rendez-vous dans **Réglages > Chuck365** pour configurer votre premier style !
-
-## 🤝 Soutenir le Projet
-
-Le serveur et l'API de Chuck365 sont maintenus par passion. Si vous aimez ce plugin, n'hésitez pas à soutenir l'auteur via le bouton "Soutenir Chuck365" directement dans l'interface du plugin ou sur le site [Chuck365.fr](https://chuck365.fr). 
+Propulsé par l’API de Chuck365.fr, le plugin combine humour, performances et personnalisation avancée avec une intégration native WordPress et Gutenberg.
 
 ---
-© **Papy 3D Factory** — *Parce que même WordPress a besoin de la protection de Chuck Norris.*
+
+# 🚀 Fonctionnalités
+
+## 🎨 Collection de Cartes Visuelles
+
+Le plugin inclut désormais :
+
+* une carte **Classic** entièrement personnalisable ;
+* une collection de **10 cartes Ranger / Chuck Fact** ;
+* un style **Texas Ranger** premium ;
+* des rendus inspirés western, cuir, badges sheriff et univers Chuck Norris.
+
+Chaque carte possède :
+
+* animations ;
+* styles immersifs ;
+* responsive design ;
+* compatibilité frontend + admin + Gutenberg.
+
+---
+
+## 🧩 Intégration Gutenberg Native
+
+* Bloc Gutenberg dédié ;
+* prévisualisation temps réel dans l’éditeur ;
+* rendu identique entre admin et frontend ;
+* sélection du style directement depuis l’inspecteur de blocs.
+
+---
+
+## 🎛️ Personnalisation Avancée
+
+### Mode Classic
+
+Le mode Classic permet :
+
+* modification des couleurs ;
+* personnalisation complète du fond ;
+* personnalisation du texte ;
+* personnalisation des bordures.
+
+### Modes Ranger
+
+Les cartes Ranger utilisent des palettes verrouillées afin de préserver leur identité graphique et leur cohérence visuelle.
+
+---
+
+## ⚡ Performance Optimisée
+
+* mise en cache des Chuck Facts via les **Transients WordPress** ;
+* réduction des appels API ;
+* chargement rapide ;
+* CSS optimisé ;
+* JavaScript léger sans dépendances inutiles.
+
+---
+
+## 🧠 Shortcodes
+
+Utilisez simplement :
+
+```txt
+[papy3d_chuck_fact]
+```
+
+Ou choisissez un style spécifique :
+
+```txt
+[papy3d_chuck_fact style="classic"]
+```
+
+```txt
+[papy3d_chuck_fact style="texas-ranger"]
+```
+
+---
+
+# 🛠️ Stack Technique
+
+* **PHP 8.0+**
+* sécurité renforcée ;
+* protection CSRF ;
+* sanitation complète des entrées ;
+* API REST WordPress ;
+* JavaScript Vanilla ;
+* Gutenberg API ;
+* CSS moderne responsive.
+
+---
+
+# 🔐 Sécurité
+
+Le plugin utilise :
+
+* validation des données ;
+* sanitation WordPress ;
+* `wp_nonce_field`
+* `wp_verify_nonce`
+* `esc_html`
+* `sanitize_text_field`
+* `wp_kses_post`
+
+---
+
+# 📂 Structure du Projet
+
+```txt
+papy3d-fact-viewer-for-chuck365/
+├── block/               # Bloc Gutenberg
+├── css/                 # Styles frontend/admin
+├── images/              # Assets graphiques
+├── js/                  # Scripts JS
+├── languages/           # Traductions
+├── templates/           # Templates des cartes
+├── uninstall.php        # Nettoyage du plugin
+└── papy3d-fact-viewer-for-chuck365.php
+```
+
+---
+
+# 📥 Installation
+
+1. Téléversez le plugin dans :
+
+```txt
+/wp-content/plugins/
+```
+
+2. Activez le plugin depuis WordPress.
+3. Configurez votre carte depuis l’administration.
+4. Ajoutez le shortcode ou utilisez le bloc Gutenberg.
+
+---
+
+# 🎨 Styles Disponibles
+
+* Classic
+* Texas Ranger
+* Desert Storm
+* Outlaw
+* Sheriff Gold
+* Wild West
+* Midnight Ranger
+* Cowboy Steel
+* Saloon Fire
+* Black Badge
+* Dust Rider
+* Lone Ranger
+
+---
+
+
+# 🤝 Soutenir le Projet
+
+Chuck365 et ce plugin sont développés par passion.
+
+Si vous aimez ce projet :
+
+* soutenez Chuck365 ;
+* partagez le plugin ;
+* utilisez les Chuck Facts avec honneur.
+
+---
+
+# © Papy 3D Factory
+
+Parce que même WordPress a besoin de la protection de Chuck Norris.
+
