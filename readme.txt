@@ -54,16 +54,16 @@ Privacy: https://www.paypal.com/us/legalhub/privacy-full
 == Changelog ==
 
 = 2.1.0 =
-* Correction du Stable Tag dans readme.txt.
-* Refonte de la carte Classic dans le même esprit visuel que les cartes Ranger.
-* Suppression des presets de couleurs du mode Classic.
-* Conservation uniquement des couleurs personnalisées pour Classic.
-* Interface d’administration simplifiée.
-* Ajout d’une collection de 10 cartes au style Ranger / Chuck Fact.
-* Ajout du choix entre Classic et les variantes Ranger.
-* Désactivation automatique des contrôles de couleurs pour les cartes non éditables.
-* Support complet dans le frontend, l’administration et Gutenberg.
-* Ajout du support shortcode `style="texas-ranger"`.
+* Fixed the Stable Tag in readme.txt.
+* Redesigned the Classic map to match the visual style of the Ranger maps.
+* Removed color presets from Classic mode.
+* Retained only custom colors for Classic.
+* Simplified administration interface.
+* Added a collection of 10 maps in the Ranger/Chuck Fact style.
+* Added the option to choose between Classic and Ranger variants.
+* Automatically disabled color controls for non-editable maps.
+* Full support in the frontend, administration, and Gutenberg.
+* Added support for the `style="texas-ranger"` shortcode.
 
 = 2.0.8 =
 * Added Uninstall script
