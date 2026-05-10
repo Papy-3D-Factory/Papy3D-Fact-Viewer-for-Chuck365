@@ -3,7 +3,7 @@ Contributors: papy3d
 Tags: chuck norris, facts, humor, api, gutenberg
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 2.0.5
+Stable tag: 2.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,6 +52,21 @@ Privacy: https://www.paypal.com/us/legalhub/privacy-full
 *   **Display**: You can showcase the facts using the **"Chuck365 Fact"** block within the Gutenberg editor or the `[papyfavi_fact]` shortcode.
 
 == Changelog ==
+
+= 2.1.0 =
+* Correction du Stable Tag dans readme.txt.
+* Refonte de la carte Classic dans le même esprit visuel que les cartes Ranger.
+* Suppression des presets de couleurs du mode Classic.
+* Conservation uniquement des couleurs personnalisées pour Classic.
+* Interface d’administration simplifiée.
+* Ajout d’une collection de 10 cartes au style Ranger / Chuck Fact.
+* Ajout du choix entre Classic et les variantes Ranger.
+* Désactivation automatique des contrôles de couleurs pour les cartes non éditables.
+* Support complet dans le frontend, l’administration et Gutenberg.
+* Ajout du support shortcode `style="texas-ranger"`.
+
+= 2.0.8 =
+* Added Uninstall script
 
 = 2.0.5 =
 * Fix: Gutenberg editor no longer ignores admin color settings when inserting a new block.

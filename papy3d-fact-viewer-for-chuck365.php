@@ -3,7 +3,7 @@
  * Plugin Name: Papy3D Fact Viewer for Chuck365
  * Plugin URI: https://github.com/Papy-3D-Factory/Papy3D-Fact-Viewer-for-Chuck365
  * Description: Displays a unique and different Chuck Norris fact every day via the official Chuck365.fr API.
- * Version: 2.0.5
+ * Version: 2.1.0
  * Author: papy3d
  * Author URI: https://papy-3d-factory.xyz
  * Text Domain: papy3d-fact-viewer-for-chuck365
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 if (!defined('PAPYFAVI_VERSION')) {
     define(
         'PAPYFAVI_VERSION',
-        '2.0.5' . (defined('WP_DEBUG') && WP_DEBUG ? '.' . filemtime(__DIR__ . '/js/admin-settings.js') : '')
+        '2.1.0' . (defined('WP_DEBUG') && WP_DEBUG ? '.' . filemtime(__DIR__ . '/js/admin-settings.js') : '')
     );
 }
 
@@ -125,6 +125,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 				'bgColor'     => sanitize_hex_color(get_option('papyfavi_bg_color', '#ffffff')),
 				'textColor'   => sanitize_hex_color(get_option('papyfavi_text_color', '#222222')),
 				'title'       => sanitize_text_field(get_option('papyfavi_text_title', 'Chuck Fact')),
+                'style'       => sanitize_key(get_option('papyfavi_card_style', 'classic')),
 			]
 		);
 	}
@@ -186,6 +187,14 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 		register_setting('papyfavi-group', 'papyfavi_text_color', $color_args);
 		register_setting('papyfavi-group', 'papyfavi_text_title', $text_args);
 		register_setting('papyfavi-group', 'papyfavi_show_copyright', $bool_args);
+		register_setting('papyfavi-group', 'papyfavi_card_style', [
+			'type'              => 'string',
+			'default'           => 'classic',
+			'sanitize_callback' => function($value) {
+				$value = sanitize_key((string) $value);
+				return in_array($value, ['classic', 'texas-ranger', 'desert-sheriff', 'midnight-outlaw', 'gold-badge', 'wanted-poster', 'saloon-wood', 'prairie-sunset', 'black-hat', 'dynamite', 'lone-star'], true) ? $value : 'classic';
+			},
+		]);
 		register_setting('papyfavi-group', 'papyfavi_api_consent', [
 			'type'              => 'boolean',
 			'default'           => false,
@@ -240,6 +249,25 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                                         <td><input type="text" name="papyfavi_text_title" id="papyfavi_text_title" value="<?php echo esc_attr(get_option('papyfavi_text_title', 'Chuck Norris Fact du jour')); ?>" class="regular-text" /></td>
                                     </tr>
                                     <tr>
+                                        <th scope="row"><?php esc_html_e('Style de carte', 'papy3d-fact-viewer-for-chuck365'); ?></th>
+                                        <td>
+                                            <select name="papyfavi_card_style" id="papyfavi_card_style">
+                                                <option value="classic" <?php selected(get_option('papyfavi_card_style', 'classic'), 'classic'); ?>><?php esc_html_e('Classique', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="texas-ranger" <?php selected(get_option('papyfavi_card_style', 'classic'), 'texas-ranger'); ?>><?php esc_html_e('Texas Ranger', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="desert-sheriff" <?php selected(get_option('papyfavi_card_style', 'classic'), 'desert-sheriff'); ?>><?php esc_html_e('Desert Sheriff', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="midnight-outlaw" <?php selected(get_option('papyfavi_card_style', 'classic'), 'midnight-outlaw'); ?>><?php esc_html_e('Midnight Outlaw', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="gold-badge" <?php selected(get_option('papyfavi_card_style', 'classic'), 'gold-badge'); ?>><?php esc_html_e('Gold Badge', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="wanted-poster" <?php selected(get_option('papyfavi_card_style', 'classic'), 'wanted-poster'); ?>><?php esc_html_e('Wanted Poster', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="saloon-wood" <?php selected(get_option('papyfavi_card_style', 'classic'), 'saloon-wood'); ?>><?php esc_html_e('Saloon Wood', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="prairie-sunset" <?php selected(get_option('papyfavi_card_style', 'classic'), 'prairie-sunset'); ?>><?php esc_html_e('Prairie Sunset', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="black-hat" <?php selected(get_option('papyfavi_card_style', 'classic'), 'black-hat'); ?>><?php esc_html_e('Black Hat', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="dynamite" <?php selected(get_option('papyfavi_card_style', 'classic'), 'dynamite'); ?>><?php esc_html_e('Dynamite', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                                <option value="lone-star" <?php selected(get_option('papyfavi_card_style', 'classic'), 'lone-star'); ?>><?php esc_html_e('Lone Star', 'papy3d-fact-viewer-for-chuck365'); ?></option>
+                                            </select>
+                                            <p class="description"><?php esc_html_e('Les styles Ranger utilisent une palette fixe : les couleurs personnalisées sont disponibles uniquement en mode Classique.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row"><?php esc_html_e('Afficher le Copyright', 'papy3d-fact-viewer-for-chuck365'); ?></th>
                                         <td>
                                             <input type="checkbox" name="papyfavi_show_copyright" id="papyfavi_show_copyright" value="1" <?php checked(1, get_option('papyfavi_show_copyright', 1)); ?> />
@@ -278,18 +306,6 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                                         </td>
                                     </tr>
                                 </table>
-
-                                <p>
-                                    <strong><?php esc_html_e('Presets de style :', 'papy3d-fact-viewer-for-chuck365'); ?></strong><br><br>
-                                    <button type="button" class="button chuck-preset" data-b="#f39c12" data-bg="#ffffff" data-c="#222222">🔸 Original</button>
-                                    <button type="button" class="button chuck-preset" data-b="#e74c3c" data-bg="#fff5f5" data-c="#c0392b">🔥 Fire</button>
-                                    <button type="button" class="button chuck-preset" data-b="#111111" data-bg="#1e1e1e" data-c="#eeeeee">🌙 Dark</button>
-                                    <button type="button" class="button chuck-preset" data-b="#3498db" data-bg="#ebf5fb" data-c="#21618c">🌊 Ocean</button>
-                                    <button type="button" class="button chuck-preset" data-b="#27ae60" data-bg="#f1f9f5" data-c="#145a32">🌲 Forest</button>
-                                    <button type="button" class="button chuck-preset" data-b="#d4af37" data-bg="#fffdf5" data-c="#996515">🏆 Gold</button>
-                                    <button type="button" class="button chuck-preset" data-b="#bdc3c7" data-bg="#f8f9f9" data-c="#2c3e50">🥈 Argent</button>
-                                    <button type="button" class="button" id="chuck-reset">↺ Reset</button>
-                                </p>
                                 <?php submit_button(); ?>
                             </form>
                         </div>
@@ -319,7 +335,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                     <h3>💡 <?php esc_html_e('Conseils d\'optimisation', 'papy3d-fact-viewer-for-chuck365'); ?></h3>
                     <ul>
                         <li><strong><?php esc_html_e('Mise en cache :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Le plugin utilise un système de "Transients". Le fait est récupéré une seule fois par jour et stocké localement pour garantir une vitesse de chargement optimale.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
-                        <li><strong><?php esc_html_e('Design cohérent :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Utilisez les presets dans l\'onglet "Réglages" pour adapter rapidement le widget à la charte graphique de votre thème.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
+                        <li><strong><?php esc_html_e('Design cohérent :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Utilisez le mode Classique pour personnaliser les couleurs, ou choisissez une carte Ranger avec sa palette fixe.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                     </ul>
                     <div style="background: #fff8e5; padding: 15px; border-left: 4px solid #ffb900; margin-top: 20px;">
                         <p style="margin: 0;">⚠️ <strong><?php esc_html_e('Note technique :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Si vous changez les couleurs et que vous utilisez un plugin de cache (WP Rocket, Autoptimize), pensez à vider le cache pour voir les modifications immédiatement sur votre site.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
@@ -368,7 +384,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
                         <li><strong><?php esc_html_e('Haute Disponibilité :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Hébergée pour répondre plus vite qu\'un high-kick, l\'API supporte des requêtes provenant de divers environnements sans latence perceptible.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
                     </ul>
                     <h3>📦 <?php esc_html_e('Le Plugin Papy3D Fact Viewer for Chuck365', 'papy3d-fact-viewer-for-chuck365'); ?></h3>
-                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.0.5) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
+                    <p><?php esc_html_e('Pour les utilisateurs de WordPress, le plugin Papy3D Fact Viewer for Chuck365 (actuellement en version 2.1.0) agit comme le pont direct entre la puissance de l\'API et votre interface utilisateur.', 'papy3d-fact-viewer-for-chuck365'); ?></p>
                     <h4><?php esc_html_e('Caractéristiques Principales :', 'papy3d-fact-viewer-for-chuck365'); ?></h4>
                     <ul>
                         <li><strong><?php esc_html_e('Affichage Dynamique :', 'papy3d-fact-viewer-for-chuck365'); ?></strong> <?php esc_html_e('Le plugin récupère automatiquement les faits via l\'API officielle.', 'papy3d-fact-viewer-for-chuck365'); ?></li>
@@ -502,6 +518,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 			'textColor'     => get_option('papyfavi_text_color', '#222222'),
 			'title'         => get_option('papyfavi_text_title', 'Chuck Norris Fact du jour'),
 			'showCopyright' => get_option('papyfavi_show_copyright', true),
+			'style'         => get_option('papyfavi_card_style', 'classic'),
 		], $atts);
 
 		return $this->render([
@@ -510,6 +527,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 			'textColor'     => sanitize_hex_color($atts['textColor']),
 			'title'         => esc_html($atts['title']),
 			'showCopyright' => (bool) $atts['showCopyright'],
+			'style'         => in_array(sanitize_key((string)$atts['style']), ['classic', 'texas-ranger', 'desert-sheriff', 'midnight-outlaw', 'gold-badge', 'wanted-poster', 'saloon-wood', 'prairie-sunset', 'black-hat', 'dynamite', 'lone-star'], true) ? sanitize_key((string)$atts['style']) : 'classic',
 		]);
 	}
 
@@ -527,6 +545,18 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 		$color         = sanitize_hex_color((string)($attributes['textColor']     ?? get_option('papyfavi_text_color', '#222222')));
 		$title         = esc_html((string)($attributes['title']         ?? get_option('papyfavi_text_title', 'Chuck Norris Fact du jour')));
 		$showCopyright = isset($attributes['showCopyright']) ? (bool)$attributes['showCopyright'] : (bool)get_option('papyfavi_show_copyright', true);
+		$style         = sanitize_key((string)($attributes['style'] ?? get_option('papyfavi_card_style', 'classic')));
+		if (!in_array($style, ['classic', 'texas-ranger', 'desert-sheriff', 'midnight-outlaw', 'gold-badge', 'wanted-poster', 'saloon-wood', 'prairie-sunset', 'black-hat', 'dynamite', 'lone-star'], true)) {
+			$style = 'classic';
+		}
+
+		// Le thème Texas Ranger possède sa propre palette fixe :
+		// les couleurs personnalisées ne doivent pas écraser ce rendu dans l'admin ou le front.
+		if ($style !== 'classic') {
+			$border = '#d3a15f';
+			$bg     = '#5c361c';
+			$color  = '#ffffff';
+		}
 
 		$icon_url  = plugins_url('images/chuck.png', __FILE__);
 		$ajax_url  = esc_url(admin_url('admin-ajax.php'));
@@ -536,7 +566,8 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 		$unique_id = sanitize_html_class('chuck-title-' . bin2hex(random_bytes(4)));
 
 		ob_start();
-		?><div class="cn-main-box" data-ajax-url="<?php echo esc_url($ajax_url); ?>" data-nonce="<?php echo esc_attr($nonce); ?>" style="--chuck-border:<?php echo esc_attr($border); ?>; --chuck-bg:<?php echo esc_attr($bg); ?>; --chuck-text:<?php echo esc_attr($color); ?>;">
+		?><div class="cn-main-box cn-style-<?php echo esc_attr($style); ?>" data-ajax-url="<?php echo esc_url($ajax_url); ?>" data-nonce="<?php echo esc_attr($nonce); ?>" style="--chuck-border:<?php echo esc_attr($border); ?>; --chuck-bg:<?php echo esc_attr($bg); ?>; --chuck-text:<?php echo esc_attr($color); ?>;">
+			<div class="cn-ranger-badge"><?php echo $style !== 'classic' ? 'Chuck<br>Ranger' : 'Chuck<br>Fact'; ?></div>
 			<div class="cn-top-label">
 				<div class="cn-icon-container">
 					<img src="<?php echo esc_url($icon_url); ?>"
@@ -553,7 +584,7 @@ class Papy3D_Fact_Viewer_For_Chuck365_Plugin {
 			<?php if ($showCopyright) : ?>
 				<div class="cn-bottom-bar">
 					<div class="cn-copy-wrapper"><span class="cn-copy-info">© <?php echo esc_html(gmdate('Y')); ?> — Chuck365</span></div>
-					<a href="https://chuck365.fr" target="_blank" rel="noopener noreferrer" class="cn-link-btn"><?php echo esc_html__('Visiter le site', 'papy3d-fact-viewer-for-chuck365'); ?></a>
+					<a href="https://chuck365.fr" target="_blank" rel="noopener noreferrer" class="cn-link-btn"><?php echo $style !== 'classic' ? esc_html__('Entrer dans le saloon', 'papy3d-fact-viewer-for-chuck365') : esc_html__('Visiter le site', 'papy3d-fact-viewer-for-chuck365'); ?></a>
 				</div>
 			<?php endif; ?>
 		</div><?php

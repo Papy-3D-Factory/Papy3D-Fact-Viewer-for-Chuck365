@@ -7,17 +7,32 @@
     "icon": "superhero",
     "description": "Affiche un fait de Chuck Norris chaque jour via l'API officielle.",
     "textdomain": "papy3d-fact-viewer-for-chuck365",
-    "version": "2.0.5",
+    "version": "2.1.0",
     "supports": {
         "html": false,
         "anchor": true
     },
     "attributes": {
-        "borderColor":   { "type": "string" },
-        "bgColor":       { "type": "string" },
-        "textColor":     { "type": "string" },
-        "title":         { "type": "string", "default": "Chuck Norris Fact du jour" },
-        "showCopyright": { "type": "boolean", "default": true }
+        "borderColor": {
+            "type": "string"
+        },
+        "bgColor": {
+            "type": "string"
+        },
+        "textColor": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string",
+            "default": "Chuck Norris Fact du jour"
+        },
+        "showCopyright": {
+            "type": "boolean",
+            "default": true
+        },
+        "style": {
+            "type": "string"
+        }
     },
     "style": "papyfavi-style",
     "editorScript": "papyfavi-editor-script",

@@ -47,7 +47,7 @@
 
 .cn-main-box blockquote,
 .cn-main-box .cn-content-area {
-    background: var(--chuck-bg) !important;
+    /* background: var(--chuck-bg) !important; */
     color: var(--chuck-text, #333) !important;
     border: none !important;
     box-shadow: none !important;
@@ -104,4 +104,388 @@
 .cn-main-box:hover .cn-custom-icon {
     transform: scale(1.2) rotate(5deg);
     transition: transform 0.3s ease-in-out;
+}
+
+/* Option : Texas Ranger */
+.cn-main-box.cn-style-texas-ranger {
+    border: 4px solid #d3a15f !important;
+    background:
+        radial-gradient(circle at top left, rgba(255, 205, 120, .22), transparent 34%),
+        linear-gradient(180deg, rgba(92, 54, 28, .98), rgba(52, 29, 14, .99)) !important;
+    color: #fff4e3 !important;
+    border-radius: 18px !important;
+    padding: 42px !important;
+    box-shadow:
+        0 0 0 3px rgba(0,0,0,.55),
+        0 24px 55px rgba(0,0,0,.45),
+        inset 0 0 42px rgba(0,0,0,.38) !important;
+    overflow: hidden !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+}
+
+.cn-main-box.cn-style-texas-ranger::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 2px, transparent 2px, transparent 7px),
+        radial-gradient(circle at 80% 10%, rgba(211,161,95,.18), transparent 22%) !important;
+    pointer-events: none !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-ranger-badge {
+    position: absolute !important;
+    top: -22px !important;
+    right: 36px !important;
+    z-index: 2 !important;
+    width: 96px !important;
+    height: 96px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+    background: linear-gradient(180deg, #f2d29a, #c88a3e) !important;
+    color: #311708 !important;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%) !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: .8px !important;
+    text-transform: uppercase !important;
+    transform: rotate(12deg) !important;
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,.45)) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-top-label {
+    position: relative !important;
+    z-index: 1 !important;
+    gap: 18px !important;
+    margin-bottom: 30px !important;
+    color: #f2d2a2 !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-title-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: clamp(28px, 4vw, 50px) !important;
+    letter-spacing: 3px !important;
+    line-height: 1.05 !important;
+    text-shadow: 0 2px 0 #000, 0 6px 16px rgba(0,0,0,.6) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-icon-container {
+    width: 92px !important;
+    height: 92px !important;
+    border-radius: 50% !important;
+    border: 3px solid #d3a15f !important;
+    background: linear-gradient(145deg, #050505, #2b2b2b) !important;
+    box-shadow: 0 0 22px rgba(0,0,0,.55), inset 0 0 12px rgba(255,255,255,.08) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-custom-icon {
+    width: 72px !important;
+    height: 72px !important;
+    filter: sepia(.25) contrast(1.1) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-content-area {
+    position: relative !important;
+    z-index: 1 !important;
+    padding: 34px !important;
+    border: 2px solid rgba(211,161,95,.48) !important;
+    border-radius: 14px !important;
+    background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.34)) !important;
+    color: #fff4e3 !important;
+    font-size: clamp(1.35rem, 3vw, 2.35rem) !important;
+    line-height: 1.5 !important;
+    font-style: italic !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,.75) !important;
+    box-shadow: inset 0 0 24px rgba(0,0,0,.36) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-content-area blockquote::before,
+.cn-main-box.cn-style-texas-ranger .cn-content-area blockquote::after {
+    color: #d3a15f !important;
+    font-size: 1.25em !important;
+    font-weight: 900 !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-content-area blockquote::before {
+    content: "❝ " !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-content-area blockquote::after {
+    content: " ❞" !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-bottom-bar {
+    position: relative !important;
+    z-index: 1 !important;
+    border-top: 1px solid rgba(211,161,95,.32) !important;
+    margin-top: 32px !important;
+    padding-top: 22px !important;
+    justify-content: space-between !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-copy-info {
+    color: #d8b58b !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 15px !important;
+    letter-spacing: .8px !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-link-btn {
+    background: linear-gradient(180deg, #d3a15f, #9f6733) !important;
+    color: #2b1609 !important;
+    border: 2px solid #f5d7a8 !important;
+    border-radius: 10px !important;
+    padding: 12px 20px !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 6px 0 #5a3117, 0 10px 20px rgba(0,0,0,.35) !important;
+}
+
+.cn-main-box.cn-style-texas-ranger .cn-link-btn::before {
+    content: "★ " !important;
+}
+
+@media (max-width: 700px) {
+    .cn-main-box.cn-style-texas-ranger {
+        padding: 28px !important;
+    }
+
+    .cn-main-box.cn-style-texas-ranger .cn-top-label,
+    .cn-main-box.cn-style-texas-ranger .cn-bottom-bar {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .cn-main-box.cn-style-texas-ranger .cn-ranger-badge {
+        width: 76px !important;
+        height: 76px !important;
+        font-size: 10px !important;
+        right: 20px !important;
+    }
+}
+
+/* Collection Ranger / Chuck Fact : 10 cartes fixes */
+.papyfavi-disabled-row,
+.papyfavi-disabled-picker {
+    opacity: .45 !important;
+    pointer-events: none !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) {
+    color: #ffffff !important;
+    border-radius: 18px !important;
+    padding: 42px !important;
+    overflow: hidden !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.55), 0 24px 55px rgba(0,0,0,.45), inset 0 0 42px rgba(0,0,0,.28) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star)::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 2px, transparent 2px, transparent 7px) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-ranger-badge {
+    position: absolute !important;
+    top: -22px !important;
+    right: 36px !important;
+    z-index: 2 !important;
+    width: 96px !important;
+    height: 96px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+    background: linear-gradient(180deg, #f2d29a, #c88a3e) !important;
+    color: #311708 !important;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%) !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: .8px !important;
+    text-transform: uppercase !important;
+    transform: rotate(12deg) !important;
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,.45)) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-top-label {
+    position: relative !important;
+    z-index: 1 !important;
+    gap: 18px !important;
+    margin-bottom: 26px !important;
+    color: #ffffff !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-title-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: clamp(28px, 4vw, 50px) !important;
+    letter-spacing: 3px !important;
+    line-height: 1.05 !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 0 #000, 0 6px 16px rgba(0,0,0,.75) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-icon-container {
+    width: 92px !important;
+    height: 92px !important;
+    border-radius: 50% !important;
+    border: 3px solid rgba(255,255,255,.68) !important;
+    background: linear-gradient(145deg, #050505, #2b2b2b) !important;
+    box-shadow: 0 0 22px rgba(0,0,0,.55), inset 0 0 12px rgba(255,255,255,.08) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-custom-icon {
+    width: 72px !important;
+    height: 72px !important;
+    filter: sepia(.25) contrast(1.1) !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area {
+    position: relative !important;
+    z-index: 1 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    font-size: clamp(1.35rem, 3vw, 2.35rem) !important;
+    line-height: 1.5 !important;
+    font-style: italic !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,.85) !important;
+    box-shadow: none !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area blockquote,
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area * {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area blockquote::before,
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area blockquote::after {
+    color: #f6cf8b !important;
+    font-size: 1.25em !important;
+    font-weight: 900 !important;
+}
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area blockquote::before { content: "❝ " !important; }
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-content-area blockquote::after { content: " ❞" !important; }
+
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-bottom-bar {
+    position: relative !important;
+    z-index: 1 !important;
+    border-top: 1px solid rgba(255,255,255,.25) !important;
+    margin-top: 32px !important;
+    padding-top: 22px !important;
+    justify-content: space-between !important;
+}
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-copy-info { color: #ffffff !important; }
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-link-btn {
+    background: linear-gradient(180deg, #f2d29a, #9f6733) !important;
+    color: #2b1609 !important;
+    border: 2px solid #f5d7a8 !important;
+    border-radius: 10px !important;
+    padding: 12px 20px !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 6px 0 rgba(0,0,0,.45), 0 10px 20px rgba(0,0,0,.35) !important;
+}
+.cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-link-btn::before { content: "★ " !important; }
+
+.cn-main-box.cn-style-texas-ranger {
+    border: 4px solid #d3a15f !important;
+    background: radial-gradient(circle at top left, rgba(255,205,120,.22), transparent 34%), linear-gradient(180deg, #5c361c, #341d0e) !important;
+}
+.cn-main-box.cn-style-desert-sheriff {
+    border: 4px solid #e5b15e !important;
+    background: radial-gradient(circle at 15% 10%, rgba(255,217,145,.35), transparent 32%), linear-gradient(135deg, #9d5b29, #4c2510) !important;
+}
+.cn-main-box.cn-style-midnight-outlaw {
+    border: 4px solid #7289a7 !important;
+    background: radial-gradient(circle at 85% 15%, rgba(180,210,255,.25), transparent 28%), linear-gradient(135deg, #09111f, #1b2438 55%, #070707) !important;
+}
+.cn-main-box.cn-style-gold-badge {
+    border: 4px solid #f8d276 !important;
+    background: radial-gradient(circle at 50% -10%, rgba(255,230,150,.42), transparent 30%), linear-gradient(135deg, #7b4b13, #2d1705) !important;
+}
+.cn-main-box.cn-style-wanted-poster {
+    border: 4px solid #4b2a13 !important;
+    background: linear-gradient(rgba(70,38,15,.55), rgba(35,18,8,.65)), repeating-linear-gradient(0deg, #c89a62 0, #c89a62 8px, #b5824b 8px, #b5824b 16px) !important;
+}
+.cn-main-box.cn-style-saloon-wood {
+    border: 4px solid #bd7a3a !important;
+    background: linear-gradient(rgba(36,16,5,.38), rgba(36,16,5,.55)), repeating-linear-gradient(90deg, #6d3518 0, #6d3518 24px, #8a4820 24px, #8a4820 48px) !important;
+}
+.cn-main-box.cn-style-prairie-sunset {
+    border: 4px solid #ffb15c !important;
+    background: radial-gradient(circle at 20% 15%, rgba(255,209,92,.55), transparent 24%), linear-gradient(135deg, #d46a2c, #6f2b20 52%, #24120b) !important;
+}
+.cn-main-box.cn-style-black-hat {
+    border: 4px solid #a8a8a8 !important;
+    background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.15), transparent 22%), linear-gradient(135deg, #111, #2b2b2b 50%, #050505) !important;
+}
+.cn-main-box.cn-style-dynamite {
+    border: 4px solid #ffcc62 !important;
+    background: radial-gradient(circle at 75% 20%, rgba(255,217,88,.35), transparent 22%), linear-gradient(135deg, #8c1111, #401010 58%, #130505) !important;
+}
+.cn-main-box.cn-style-lone-star {
+    border: 4px solid #ffffff !important;
+    background: linear-gradient(135deg, #0b2d5c 0%, #0b2d5c 32%, #ffffff 32%, #ffffff 39%, #8b1414 39%, #3a0808 100%) !important;
+}
+
+.cn-main-box.cn-style-midnight-outlaw .cn-ranger-badge,
+.cn-main-box.cn-style-black-hat .cn-ranger-badge { background: linear-gradient(180deg, #f4f4f4, #7f8794) !important; color: #050505 !important; }
+.cn-main-box.cn-style-dynamite .cn-ranger-badge { background: linear-gradient(180deg, #ffdf7c, #d51d1d) !important; color: #260000 !important; }
+.cn-main-box.cn-style-lone-star .cn-ranger-badge { background: linear-gradient(180deg, #ffffff, #c53030) !important; color: #072655 !important; }
+
+@media (max-width: 700px) {
+    .cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) { padding: 28px !important; }
+    .cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-top-label,
+    .cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-bottom-bar { flex-direction: column !important; align-items: flex-start !important; }
+    .cn-main-box:is(.cn-style-classic,.cn-style-texas-ranger,.cn-style-desert-sheriff,.cn-style-midnight-outlaw,.cn-style-gold-badge,.cn-style-wanted-poster,.cn-style-saloon-wood,.cn-style-prairie-sunset,.cn-style-black-hat,.cn-style-dynamite,.cn-style-lone-star) .cn-ranger-badge { width: 76px !important; height: 76px !important; font-size: 10px !important; right: 20px !important; }
+}
+
+
+
+/* Carte Classique éditable — même structure Ranger, couleurs personnalisables */
+.cn-main-box.cn-style-classic {
+    border: 4px solid var(--chuck-border) !important;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,.16), transparent 34%),
+        linear-gradient(180deg, var(--chuck-bg), #1f1208) !important;
+    color: var(--chuck-text) !important;
+}
+.cn-main-box.cn-style-classic .cn-ranger-badge {
+    background: linear-gradient(180deg, #fff1cf, var(--chuck-border)) !important;
+    color: #211006 !important;
+}
+.cn-main-box.cn-style-classic .cn-top-label,
+.cn-main-box.cn-style-classic .cn-title-text,
+.cn-main-box.cn-style-classic .cn-content-area,
+.cn-main-box.cn-style-classic .cn-content-area blockquote,
+.cn-main-box.cn-style-classic .cn-content-area *,
+.cn-main-box.cn-style-classic .cn-copy-info {
+    color: var(--chuck-text) !important;
+}
+.cn-main-box.cn-style-classic .cn-content-area blockquote::before,
+.cn-main-box.cn-style-classic .cn-content-area blockquote::after {
+    color: var(--chuck-border) !important;
+}
+.cn-main-box.cn-style-classic .cn-icon-container {
+    border-color: var(--chuck-border) !important;
+}
+.cn-main-box.cn-style-classic .cn-bottom-bar {
+    border-top-color: rgba(255,255,255,.25) !important;
+}
+.cn-main-box.cn-style-classic .cn-link-btn {
+    background: linear-gradient(180deg, #fff1cf, var(--chuck-border)) !important;
+    color: #1f1208 !important;
+    border-color: #fff1cf !important;
 }
